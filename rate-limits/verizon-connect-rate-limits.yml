@@ -1,0 +1,35 @@
+aid: verizon-connect
+name: Verizon Connect Rate Limits and Access Model
+description: >
+  Verizon Connect does not publish explicit numeric request-per-second or
+  request-per-day rate limits for the Reveal Integration Services (Fleetmatics
+  Integration Manager) APIs on its public pages. What is publicly documented is
+  the authentication and access model, which shapes practical throughput.
+publishedNumericLimits: false
+authentication:
+  type: token
+  flow: >
+    Two-step. (1) GET /token with a Basic header carrying Base64-encoded Reveal
+    REST credentials returns a bearer authorization token. (2) API requests send
+    an Atmosphere authorization header of the form
+    "Atmosphere atmosphere_app_id=<Verizon Connect App ID>, Bearer <token>".
+  tokenValidityMinutes: 20
+  note: >
+    The authorization token is valid for approximately 20 minutes and must be
+    refreshed; both an Integration Manager app id and Reveal REST credentials are
+    required or requests are rejected.
+regions:
+- name: United States
+  baseURL: https://fim.api.us.fleetmatics.com
+- name: Europe
+  baseURL: https://fim.api.eu.fleetmatics.com
+delivery:
+  realTime: >
+    Real-time GPS and status is obtained by polling the Vehicle Update
+    (Real-time Aggregated Data) API, or by receiving outbound Alert and GPS
+    webhooks. There is no public WebSocket streaming endpoint.
+sources:
+- url: https://fim.us.fleetmatics.com/content/home/support/guides/DeveloperQuickStartGuide.htm
+  note: Developer Quick Start Guide - token flow, 20-minute token validity, US/EU base URLs, Atmosphere auth header.
+- url: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  note: Reveal developer portal overview - access model.

@@ -1,0 +1,51 @@
+aid: verizon-connect
+name: Verizon Connect Plans and Pricing
+description: >
+  Verizon Connect does not publish list pricing for its Reveal fleet management
+  platform or for API access. Both the subscription and API/integration access are
+  sold through direct sales and custom quotes. The figures below are an honest
+  model based on Verizon Connect's own contact-sales pages plus widely reported
+  third-party pricing as of 2026; they are indicative, not an official rate card.
+pricingModel: contact-sales
+publishedPricing: false
+apiAccessModel: >
+  API access is not a self-service or metered add-on with public pricing. It is
+  gated to active Reveal customers and their approved integration partners. A
+  Reveal customer requests integration (Reveal REST) credentials through the
+  Reveal marketplace, and a developer additionally registers for Integration
+  Manager (FIM) developer-portal credentials. Both credential sets are required to
+  call the documented APIs.
+contact:
+  salesPhone: "(866) 844-2235"
+  salesURL: https://www.verizonconnect.com/services/api-integration/
+  support: support@verizonconnect.com
+plans:
+- name: Reveal Fleet Tracking (indicative)
+  price: reported ~USD 20-45 per vehicle per month
+  billing: per vehicle, per month
+  contract: typically a 36-month (3-year) term when hardware is provided
+  note: >
+    Third-party-reported range; a commonly cited starting point is roughly
+    USD 23.50 per vehicle per month on a three-year contract. Excludes hardware,
+    installation, and possible renewal increases.
+- name: Reveal with Integrated Video (indicative)
+  price: reported ~USD 40-60 per vehicle per month
+  billing: per vehicle, per month
+  contract: typically a 36-month (3-year) term
+  note: >
+    Bundles AI dash cams and tracking hardware. Third-party-reported range.
+- name: API / Integration access
+  price: contact sales / bundled with Reveal subscription
+  billing: not separately published
+  note: >
+    API and webhook access is provisioned to existing Reveal customers and their
+    partners; no public standalone API price is published.
+sources:
+- url: https://www.verizonconnect.com/services/api-integration/
+  note: Verizon Connect API toolkit page - access via contact sales, no published pricing.
+- url: https://reveal-help.verizonconnect.com/hc/en-us/articles/17745278972435-Fees-for-Verizon-Connect-hardware-services
+  note: Reveal Help - fees for hardware services.
+- url: https://spytec.com/blogs/news/verizon-connect-pricing
+  note: Third-party pricing report (per-vehicle range, 3-year contract).
+- url: https://tech.co/fleet-management/verizon-connect-reveal-review
+  note: Third-party review with indicative pricing.

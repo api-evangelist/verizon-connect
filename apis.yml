@@ -1,0 +1,361 @@
+aid: verizon-connect
+url: https://raw.githubusercontent.com/api-evangelist/verizon-connect/refs/heads/main/apis.yml
+name: Verizon Connect
+kind: company
+description: Verizon Connect is the fleet management, telematics, and GPS vehicle
+  tracking business of Verizon (it grew out of Verizon's acquisitions of Fleetmatics
+  and Telogis). Its Reveal platform exposes a documented suite of REST APIs and
+  webhooks - the Reveal Integration Services / Fleetmatics Integration Manager (FIM)
+  APIs - covering vehicles, drivers, GPS positions and history, trips (segments),
+  driver status and safety, hours-of-service logbooks, geofences (places), groups,
+  work orders, non-powered asset tracking, fleet inspections, and dash-cam video
+  events. The API is not openly self-service - access is gated to Reveal customers
+  and their approved integration partners, who request Integration Manager and
+  Reveal REST credentials through the Reveal marketplace before they can call the
+  documented endpoints.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Fleet Management
+- Telematics
+- GPS Tracking
+- Vehicle Tracking
+- Fleet Tracking
+- Verizon
+- Fleetmatics
+created: '2026-07-04'
+modified: '2026-07-04'
+specificationVersion: '0.19'
+apis:
+- aid: verizon-connect:verizon-connect-token-authorization-api
+  name: Verizon Connect Token Authorization API
+  tags:
+  - Authentication
+  - Token
+  - OAuth
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Exchanges Base64-encoded Reveal REST credentials for a short-lived
+    bearer authorization token (valid ~20 minutes) via GET /token. Subsequent API
+    calls send an Atmosphere authorization header combining the Verizon Connect
+    app id and the bearer token. Endpoints modeled from the public Developer Quick
+    Start Guide; full request/response detail is behind the Integration Manager
+    portal.
+- aid: verizon-connect:verizon-connect-vehicle-api
+  name: Verizon Connect Vehicle API
+  tags:
+  - Vehicles
+  - Fleet
+  - Assets
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Retrieves the vehicles tracked within a Reveal account and their
+    configuration and metadata. Related documented surfaces include the Vehicle
+    Update API and the Attribute API for custom vehicle attributes. Endpoints and
+    schemas are modeled from the published API list; exact paths are documented in
+    the gated Integration Manager portal.
+- aid: verizon-connect:verizon-connect-vehicle-location-api
+  name: Verizon Connect Vehicle Location API
+  tags:
+  - GPS
+  - Location
+  - Real Time
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: The Vehicle Update API in the Reveal Real-time Aggregated Data suite
+    lets integrated customers and partners poll the latest GPS position and status
+    captured by vehicles tracked in a Reveal account. Delivery is client-initiated
+    polling (plus optional GPS webhooks); there is no public WebSocket. Endpoints
+    modeled from the published API list.
+- aid: verizon-connect:verizon-connect-vehicle-gps-history-api
+  name: Verizon Connect Vehicle GPS History API
+  tags:
+  - GPS
+  - History
+  - Positions
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Retrieves the GPS history for a specified period within a Reveal
+    account, using vehicle number as the unique identifier with a standard GET verb.
+    Endpoints modeled from the published API documentation.
+- aid: verizon-connect:verizon-connect-vehicle-segment-data-api
+  name: Verizon Connect Vehicle Segment Data API
+  tags:
+  - Trips
+  - Segments
+  - Journeys
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Provides vehicle trip / segment data - the stops, drives, idles, and
+    journey detail derived from GPS activity for vehicles in a Reveal account.
+    Endpoints modeled from the published API list.
+- aid: verizon-connect:verizon-connect-driver-api
+  name: Verizon Connect Driver API
+  tags:
+  - Drivers
+  - Fleet
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Retrieves and manages the drivers in a Reveal account and their
+    profile data. Endpoints modeled from the published API list.
+- aid: verizon-connect:verizon-connect-driver-status-api
+  name: Verizon Connect Driver Status API
+  tags:
+  - Drivers
+  - Status
+  - Activity
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Retrieves a specified driver's current activity status (for example
+    GET driver status by driver number), with a companion Driver Status Options API
+    for the configurable status values. Endpoints modeled from the published API
+    documentation.
+- aid: verizon-connect:verizon-connect-driver-assignment-api
+  name: Verizon Connect Driver Assignment API
+  tags:
+  - Drivers
+  - Assignment
+  - Vehicles
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Manages the assignment of drivers to vehicles within a Reveal
+    account. Endpoints modeled from the published API list.
+- aid: verizon-connect:verizon-connect-driver-safety-api
+  name: Verizon Connect Driver Safety API
+  tags:
+  - Safety
+  - Driver Behavior
+  - Scoring
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Exposes driver safety and behavior data such as harsh driving,
+    speeding, and related risk events captured across the fleet. Endpoints modeled
+    from the published API list.
+- aid: verizon-connect:verizon-connect-logbook-api
+  name: Verizon Connect Logbook API
+  tags:
+  - Hours of Service
+  - Compliance
+  - ELD
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Provides logbook and hours-of-service compliance information (for
+    example current logbook status by driver) to third-party time card reporting,
+    maintenance, routing, and dispatching systems. Endpoints modeled from the
+    published API documentation.
+- aid: verizon-connect:verizon-connect-geofence-api
+  name: Verizon Connect Geofence API
+  tags:
+  - Geofences
+  - Places
+  - Locations
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Manages geofences (Places) - the named locations and boundaries used
+    to trigger entry/exit alerts and location reporting in Reveal. Endpoints modeled
+    from the published API list.
+- aid: verizon-connect:verizon-connect-group-api
+  name: Verizon Connect Group API
+  tags:
+  - Groups
+  - Organization
+  - Hierarchy
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Manages the groups used to organize vehicles, drivers, and assets in
+    a Reveal account, with a companion Group Relocation API for moving entities
+    between groups. Endpoints modeled from the published API list.
+- aid: verizon-connect:verizon-connect-work-order-api
+  name: Verizon Connect Work Order API
+  tags:
+  - Work Orders
+  - Field Service
+  - Dispatch
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Creates and manages field-service work orders, with companion Work
+    Order Status API and Work Order Type API surfaces for the supporting reference
+    data. Endpoints modeled from the published API list.
+- aid: verizon-connect:verizon-connect-non-powered-assets-api
+  name: Verizon Connect Non-Powered Assets API
+  tags:
+  - Asset Tracking
+  - Trailers
+  - Equipment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Tracks non-powered assets such as trailers and equipment, with
+    companion Non-Powered Assets Update API (latest position/status polling) and
+    Non-Powered Assets GPS History API surfaces. Endpoints modeled from the
+    published API list.
+- aid: verizon-connect:verizon-connect-fleet-inspections-api
+  name: Verizon Connect Fleet Inspections API
+  tags:
+  - Inspections
+  - DVIR
+  - Maintenance
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Exposes fleet inspection (DVIR-style) records completed by drivers,
+    for integration with maintenance and compliance systems. Endpoints modeled from
+    the published API list.
+- aid: verizon-connect:verizon-connect-video-event-api
+  name: Verizon Connect Video Event API
+  tags:
+  - Video
+  - Dash Cam
+  - Events
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Provides dash-cam / video safety events captured by Verizon Connect
+    Integrated Video, for pulling triggered clips and event metadata into external
+    safety systems. Endpoints modeled from the published API list.
+- aid: verizon-connect:verizon-connect-user-api
+  name: Verizon Connect User API
+  tags:
+  - Users
+  - Administration
+  - Accounts
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+  description: Manages the Reveal account users and their details. Endpoints modeled
+    from the published API list.
+- aid: verizon-connect:verizon-connect-webhooks
+  name: Verizon Connect Webhooks
+  tags:
+  - Webhooks
+  - Alerts
+  - GPS
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/5491815998099-Create-API-and-webhook-integrations
+  baseURL: https://fim.api.us.fleetmatics.com
+  properties:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/articles/360010453700-Alert-Types
+    type: Documentation
+  description: Reveal supports two webhook categories - Alert webhooks (event
+    notifications such as Idling, Geofence/Place, Harsh Driving, Ignition,
+    Speeding, Late Start, Long Stop, Sensor activation, Low Battery) and GPS
+    webhooks (location/position pushes) - delivered as outbound HTTP POSTs to a
+    customer-registered endpoint. This is server-to-endpoint HTTP push, not a
+    WebSocket. Payloads modeled from the public Reveal help documentation.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/verizonconnect
+- type: Website
+  url: https://www.verizonconnect.com
+- type: Documentation
+  url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+- type: DeveloperPortal
+  url: https://fim.us.fleetmatics.com
+- type: SignUp
+  url: https://www.verizonconnect.com/services/api-integration/
+- type: Plans
+  url: plans/verizon-connect-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/verizon-connect-rate-limits.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

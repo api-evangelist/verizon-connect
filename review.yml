@@ -1,0 +1,139 @@
+aid: verizon-connect
+name: Verizon Connect
+review:
+  question: Does Verizon Connect expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-04'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Verizon Connect's Reveal Integration
+    Services (Fleetmatics Integration Manager) API is request/response REST over
+    HTTPS. Its near-real-time surface is client-initiated polling of the Vehicle
+    Update (Real-time Aggregated Data) API, plus outbound Alert and GPS webhooks
+    (server-to-endpoint HTTP POST). There is no server-push WebSocket or SSE
+    transport on Verizon Connect's own API to model, and the exact webhook payload
+    schemas are behind the gated Integration Manager portal, so no AsyncAPI was
+    created.
+findings:
+  summary: |
+    Verizon Connect does not publish a documented public WebSocket API. Verizon
+    Connect is the fleet management / telematics / GPS vehicle tracking business
+    of Verizon (built on its acquisitions of Fleetmatics and Telogis). Its Reveal
+    platform DOES expose a real, documented suite of REST APIs and webhooks - the
+    Reveal Integration Services / Fleetmatics Integration Manager (FIM) APIs, with
+    US base https://fim.api.us.fleetmatics.com and EU base
+    https://fim.api.eu.fleetmatics.com. Authentication is a two-step token flow:
+    GET /token with Base64-encoded Reveal REST credentials returns a bearer token
+    (valid ~20 minutes), then requests carry an Atmosphere header combining a
+    Verizon Connect app id and the bearer token. Access is gated: it is available
+    only to Reveal customers and their approved integration partners, who request
+    Integration Manager and Reveal REST credentials through the Reveal marketplace.
+    A public API list enumerates ~25 APIs (Token Authorization, Driver, Vehicle,
+    User, Group, Work Order + Status + Type, Vehicle Update, Driver Assignment,
+    Geofence, Driver Status + Status Options, Group Relocation, Driver Safety,
+    Vehicle Segment Data, Vehicle GPS History, Logbook, Non-Powered Assets + Update
+    + GPS History, Fleet Inspections, Video Event, Fleet, Attribute). Real-time
+    data is obtained by polling the Vehicle Update API or via Alert and GPS
+    webhooks. No realtime, bidirectional WebSocket (ws:// or wss://) endpoint is
+    documented anywhere on Verizon Connect's public developer surface.
+  ownership: |
+    Verizon Connect is owned by and part of Verizon. It was formed from Verizon's
+    acquisitions of Fleetmatics (2016) and Telogis. The developer/API
+    infrastructure still runs under fleetmatics.com hostnames
+    (fim.us.fleetmatics.com, fim.api.us.fleetmatics.com).
+  accessModel: |
+    Gated / partner-and-customer only. There is no open self-service signup that
+    yields immediate API keys. A Reveal customer must request integration (Reveal
+    REST) credentials via the Reveal marketplace, and the developer registers for
+    Integration Manager developer-portal credentials at fim.us.fleetmatics.com.
+    Both credential sets are required to make a request. The API surface (names,
+    base URLs, auth flow) is publicly documented; detailed request/response schemas
+    live behind the gated portal.
+  endpointsModeled: true
+  endpointsModeledNote: |
+    The individual API entries in apis.yml are modeled from Verizon Connect's
+    public API list and Developer Quick Start Guide. Exact per-endpoint paths and
+    request/response schemas are documented inside the credential-gated
+    Integration Manager portal and were not fabricated. No OpenAPI was generated
+    for this reason.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://fim.api.us.fleetmatics.com
+      documented: true
+      note: Reveal Integration Services / FIM REST APIs. EU base is https://fim.api.eu.fleetmatics.com.
+    - protocol: HTTP Poll
+      scheme: https
+      documented: true
+      note: Near-real-time GPS/status obtained by polling the Vehicle Update (Real-time Aggregated Data) API. Client-initiated, not server push.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Alert webhooks and GPS webhooks POST events to a customer-registered endpoint. Server-to-endpoint HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented on any Verizon Connect / Reveal / Fleetmatics developer page as of the review date.
+  authConfirmed:
+    - GET https://fim.api.us.fleetmatics.com/token
+    - "Header: Authorization: Basic <Base64 Reveal REST credentials> (to obtain token)"
+    - "Header: Authorization: Atmosphere atmosphere_app_id=<app id>, Bearer <token> (on API calls)"
+    - tokenValidityMinutes: 20
+  documentedApis:
+    - Token Authorization API
+    - Driver API
+    - Vehicle API
+    - User API
+    - Group API
+    - Work Order Status API
+    - Work Order Type API
+    - Work Order API
+    - Vehicle Update API
+    - Driver Assignment API
+    - Geofence API
+    - Driver Status Options API
+    - Driver Status API
+    - Group Relocation API
+    - Driver Safety API
+    - Vehicle Segment Data API
+    - Vehicle GPS History API
+    - Logbook API
+    - Non-Powered Assets API
+    - Non-Powered Assets Update API
+    - Non-Powered Assets GPS History API
+    - Fleet Inspections API
+    - Video Event API
+    - Fleet API
+    - Attribute API
+sources:
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
+    type: Documentation
+    note: Reveal developer portal overview - review APIs, get endpoints, access model.
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/sections/5491620930451-API-integrations
+    type: Documentation
+    note: Reveal Help - API integrations section.
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/articles/5491815998099-Create-API-and-webhook-integrations
+    type: Documentation
+    note: Create API and webhook integrations - Alert and GPS webhook types, API library.
+  - url: https://reveal-help.verizonconnect.com/hc/en-us/articles/360010453700-Alert-Types
+    type: Documentation
+    note: Alert types available in Reveal (used for Alert webhooks).
+  - url: https://fim.us.fleetmatics.com/apis
+    type: APIReference
+    note: Public API list enumerating ~25 Reveal Integration Services APIs.
+  - url: https://fim.us.fleetmatics.com/content/home/support/guides/DeveloperQuickStartGuide.htm
+    type: Documentation
+    note: Developer Quick Start Guide - US/EU base URLs, GET /token flow, 20-minute token validity, Atmosphere auth header, dual-credential requirement.
+  - url: https://www.verizonconnect.com/services/api-integration/
+    type: Documentation
+    note: API toolkit page - contact-sales access, no published pricing, no WebSocket mentioned.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Verizon Connect's Reveal API is
+    request/response REST plus polling and outbound webhooks. apis.yml documents
+    the real, publicly-listed APIs with endpointsModeled=true (exact schemas are
+    behind the gated Integration Manager portal); no OpenAPI or AsyncAPI was
+    fabricated.
