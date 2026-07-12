@@ -342,6 +342,8 @@ apis:
     customer-registered endpoint. This is server-to-endpoint HTTP push, not a
     WebSocket. Payloads modeled from the public Reveal help documentation.
 common:
+- type: DomainSecurity
+  url: security/verizon-connect-domain-security.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/verizonconnect
 - type: Website
