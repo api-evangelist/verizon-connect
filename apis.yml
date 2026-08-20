@@ -43,6 +43,9 @@ apis:
   tags:
   - Authentication
   - Token
+  tags_raw:
+  - Authentication
+  - Token
   - OAuth
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
@@ -80,6 +83,10 @@ apis:
 - aid: verizon-connect:verizon-connect-vehicle-location-api
   name: Verizon Connect Vehicle Location API
   tags:
+  - GPS
+  - Location
+  - Real-Time
+  tags_raw:
   - GPS
   - Location
   - Real Time
@@ -234,6 +241,10 @@ apis:
 - aid: verizon-connect:verizon-connect-group-api
   name: Verizon Connect Group API
   tags:
+  - Group
+  - Organization
+  - Hierarchy
+  tags_raw:
   - Groups
   - Organization
   - Hierarchy
@@ -305,6 +316,10 @@ apis:
   tags:
   - Video
   - Dash Cam
+  - Event
+  tags_raw:
+  - Video
+  - Dash Cam
   - Events
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://reveal-help.verizonconnect.com/hc/en-us/articles/10933751995539-Developer-portal-overview
@@ -320,6 +335,10 @@ apis:
 - aid: verizon-connect:verizon-connect-user-api
   name: Verizon Connect User API
   tags:
+  - User
+  - Administration
+  - Account
+  tags_raw:
   - Users
   - Administration
   - Accounts
@@ -336,6 +355,10 @@ apis:
 - aid: verizon-connect:verizon-connect-webhooks
   name: Verizon Connect Webhooks
   tags:
+  - Webhook
+  - Alerts
+  - GPS
+  tags_raw:
   - Webhooks
   - Alerts
   - GPS
