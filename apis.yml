@@ -13,6 +13,17 @@ description: Verizon Connect is the fleet management, telematics, and GPS vehicl
   and their approved integration partners, who request Integration Manager and
   Reveal REST credentials through the Reveal marketplace before they can call the
   documented endpoints.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: unknown
