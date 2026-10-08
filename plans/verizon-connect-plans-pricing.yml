@@ -53,3 +53,28 @@ sources:
   note: Third-party pricing report (per-vehicle range, 3-year contract).
 - url: https://tech.co/fleet-management/verizon-connect-reveal-review
   note: Third-party review with indicative pricing.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - negotiated
+  units: []
+  plans:
+  - name: Reveal Fleet Tracking (indicative)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Reveal with Integrated Video (indicative)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: API / Integration access
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
