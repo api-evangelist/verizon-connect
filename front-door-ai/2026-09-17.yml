@@ -9,10 +9,14 @@ front_door_ai:
   final_host: www.verizonconnect.com
   ownership: own
   owner: verizon-connect
-  shares_host_with: null
+  shares_host_with:
+  - fleetmatics
   inherited_from: null
+  alias_of: null
   verdict: scored
   score: 7
+  band: 4
+  band_label: moderate
   host_score: 7
   density: 4.96
   words: 1412
